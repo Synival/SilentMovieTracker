@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Silent Movie Tracker</title>
+    <link rel='stylesheet' href='style.css?v=2' />
+</head>
+
+<body class='window-main'
+    data-bind="css: { 'playing': playing, 'in-session': inSession }"
+>
+<div id='countdown' style='display: none' data-bind='visible: waitTime() > 0.00'>
+    <div id='countdown-text' data-bind='text: Math.ceil(waitTime())'></div>
+</div>
+<div id='body-outer'><div id='body-inner'>
+
+<div id='heading'>
+    <p class='title'>Silent Movie Tracker</p>
+</div>
+
+<div id='content'>
+    <select id='selector' data-bind="
+        options:        sheets,
+        optionsText:    'title',
+        value:          currentSheet,
+        optionsCaption: 'Select a movie...'
+    "></select>
+    <div style='display: none' data-bind='visible: currentSheet() != null'>
+        <div id='control-panel'>
+            <div id='buttons'>
+                <button type='button' data-bind='click: playStart, visible: !($data.inSession())'>Start from Beginning</button>
+                <button type='button' data-bind='click: playStartWait, visible: !($data.inSession())'>&lt;-- 3sec</button>
+                <button type='button' data-bind='click: playPause, text: pauseButtonText'></button>
+                <button type='button' data-bind='click: playPauseWait, visible: !($data.playing())'>&lt;-- 3sec</button>
+                <button type='button' data-bind='click: playStop, visible: inSession'>Stop</button>
+                <button type='button' data-bind='click: playSync' id='sync-button'>Sync</button>
+            </div>
+            <div id='position'>
+                <!-- ko if: !$data.playing() -->
+                <input type='number' step='0.1' data-bind='textInput: currentTimeShort'>
+                <input type='range' step='0.1' data-bind="
+                    attr: { min: startTime, max: stopTime },
+                    value: currentTimeShort, valueUpdate: 'input'
+                "></input>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <div id='cue-container'>
+            <div id='movie-outer'><div id='movie-inner'>
+                <video volume="" muted controls id='video' data-bind='attr: { src: videoUrl }'></video>
+            </div></div>
+            <div data-bind='with: currentSheet'>
+                <div class='cue-area' data-bind='cuearea: cues'>
+                    <svg class='cue-svg'></svg>
+                </div>
+                <div id='play-position'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='jquery.min.js'></script>
+<script src='knockout-3.4.2.js'></script>
+<script src='knockout-mapping-2.4.1.js'></script>
+<script src='d3.v5.min.js'></script>
+<script src='global.js?v=2'></script>
+<script src='sheets.js?v=2'></script>
+<script src='main.js?v=3'></script>
+
+</div></div>
+</body>
+
+</html>

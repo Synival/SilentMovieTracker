@@ -1,0 +1,208 @@
+body {
+    background: #888;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    transition: background ease 0.5s;
+}
+
+body.in-session {
+    background: #000;
+}
+
+#body-outer {
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#body-inner {
+    margin: 1rem;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    position: relative;
+    color: #000;
+    transition: background ease 0.5s,
+                color ease 0.5s;
+}
+
+body.in-session #body-inner {
+    background: #000;
+    color: #444;
+}
+
+p {
+    padding: 0 0 0.5em 0;
+    margin: 0;
+}
+
+#heading {
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+#heading .title {
+    font-size: 1.5rem;
+    padding: 0 0 0.25rem 0;
+}
+
+#content {
+    position: relative;
+}
+
+#selector {
+    transition: opacity ease 0.5s;
+    opacity: 1.0;
+}
+
+body.in-session #selector {
+    opacity: 0.25;
+}
+
+#control-panel {
+    margin-top: 0.5em;
+    opacity: 1.0;
+    transition: opacity ease 0.5s;
+}
+
+#buttons {
+    margin-bottom: 5px;
+}
+
+#buttons button:focus {
+    background: #9bf;
+}
+
+body.in-session #control-panel {
+    opacity: 0.25;
+}
+
+#movie-outer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+#movie-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#movie-inner video {
+    width: 100%;
+    max-height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    opacity: 1.00;
+    transition: opacity 1.50s linear;
+}
+
+body.window-movie:not(.playing) #movie-inner video {
+    opacity: 0.00;
+}
+
+.pre-box {
+    min-height: 240px;
+    border: 1px solid #888;
+    background: #bbb;
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+#cue-container {
+    margin-top: 0.5rem;
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 200px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.cue-area {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+#play-position {
+    position: absolute;
+    left: 0px;
+    top: 14px;
+    width: 100%;
+    height: 9px;
+    background: rgba(0,255,0,0.5);
+    z-index: 200;
+}
+
+.cue-svg {
+    width: 100%;
+    background: rgba(0,0,0,0.75);
+    padding: 0.5rem;
+    box-sizing: border-box;
+}
+
+.turn-blue {
+    background: blue;
+}
+
+#position {
+    width: 100%;
+    position: relative;
+    height: 20px;
+}
+
+#position input {
+    display: inline-block;
+    height: 20px;
+}
+
+#position input[type=number] {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10%;
+}
+
+#position input[type=range] {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: calc(90% - 15px);
+}
+
+#countdown {
+    position: fixed;
+    width: 50vw;
+    height: 50vh;
+    background: rgba(0,255,0,0.25);
+    z-index: 200;
+    left: 25vw;
+    top: 25vh;
+    border-radius: 5vw;
+}
+
+#countdown #countdown-text {
+    display: block;
+    width: 100%;
+    height: 50vh;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 25vh;
+    color: white;
+    line-height: 50vh;
+}
